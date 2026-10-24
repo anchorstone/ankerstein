@@ -1,0 +1,111 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const pageTitle = "Über mich";
+
+const identity = {
+  firstName: "Sarah",
+  country: "Kanada",
+  occupation: "Technische Redakteurin",
+  hobbies: ["Fotografie", "Vogelbeobachtung", "Baseball"],
+};
+
+const skills = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "React",
+  "Astro",
+  "Dokumentation schreiben",
+];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "crimson";
+const fontWeight = "bold";
+const textCase = "uppercase";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>{pageTitle}</title>
+
+        <style define:vars={{ skillColor, fontWeight, textCase }}>
+          h1 {
+            color: purple;
+            font-size: 4rem;
+          }
+          .skill {
+            color: var(--skillColor);
+            font-weight: var(--fontWeight);
+            text-transform: var(--textCase);
+          }
+        </style>
+      </head>
+    </html>
+  </head>
+  <body>
+    <Header />
+    <h1>{pageTitle}</h1>
+    <h2>… und meine neue Astro-Seite!</h2>
+    <h1>Meine Astro-Seite</h1>
+
+    <p>
+      Ich arbeite mich durch das einführende Astro-Tutorial. Dies ist die zweite
+      Seite meiner Website und die erste, die ich selbst erstellt habe!
+    </p>
+    <p>
+      Diese Website wird aktualisiert, während ich mehr vom Tutorial abschließe
+      – schau also regelmäßig vorbei, um zu sehen, wie meine Reise verläuft!
+    </p>
+
+    <p>Hier sind ein paar Fakten über mich:</p>
+    <ul>
+      <li>Mein Name ist {identity.firstName}.</li>
+      <li>
+        Ich lebe in {identity.country} und arbeite als {identity.occupation}.
+      </li>
+      {
+        identity.hobbies.length >= 2 && (
+          <li>
+            Zwei meiner Hobbys sind: {identity.hobbies[0]} und{" "}
+            {identity.hobbies[1]}
+          </li>
+        )
+      }
+    </ul>
+    <p>Meine Fähigkeiten sind:</p>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+    {happy && <p>Ich freue mich, Astro zu lernen!</p>}
+
+    {finished && <p>Ich habe dieses Tutorial abgeschlossen!</p>}
+
+    {
+      goal === 3 ? (
+        <p>Mein Ziel ist es, in 3 Tagen fertig zu werden.</p>
+      ) : (
+        <p>Mein Ziel sind nicht 3 Tage.</p>
+      )
+    }
+    <Footer />
+    <script>
+      import "../scripts/menu.js";
+    </script>
+  </body>
+</html>
